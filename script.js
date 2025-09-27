@@ -19,12 +19,21 @@ async function getWeather(e) {
     );
 
     const data = await response.json();
-    if (data.cod != "200") throw new Error(`${data.message}`);
+    if (data.cod != "200") {
+      // For city not found, display the exact API error message
+      if (data.message === "city not found") {
+        displayError("Error: City not found");
+      } else {
+        displayError(`Error: ${data.message}`);
+      }
+      return;
+    }
 
     console.log(data);
     displayWeather(data);
   } catch (error) {
     console.error("Error:", error.message);
+    displayError("Error: Failed to fetch weather data");
   }
 }
 
@@ -47,7 +56,51 @@ async function getIcon(weatherIcon) {
   }
 }
 
+function displayError(errorMessage) {
+  const weatherData = document.getElementById("weather-data");
+  
+  // Hide all existing weather info sections
+  const weatherSections = weatherData.querySelectorAll(".city-info, .weather-info, .temp-info, .other-info");
+  weatherSections.forEach(section => {
+    section.style.display = "none";
+  });
+  
+  // Remove any existing error message
+  const existingError = weatherData.querySelector(".error-display");
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  // Create new error message element within weather-data
+  const errorElement = document.createElement("div");
+  errorElement.className = "error-display";
+  errorElement.style.cssText = `
+    color: #ff4444;
+    background-color: rgba(255, 68, 68, 0.1);
+    border: 1px solid #ff4444;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  `;
+  
+  errorElement.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${errorMessage}`;
+  weatherData.appendChild(errorElement);
+}
+
 async function displayWeather(data) {
+  // Hide error message if it exists
+  const errorElement = document.getElementById("error-message");
+  if (errorElement) {
+    errorElement.style.display = "none";
+  }
+
   //weather-info
   const weatherConditionCode = data.weather[0]?.id;
   const weatherMain = data.weather[0]?.main;

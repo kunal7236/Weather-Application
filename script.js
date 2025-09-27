@@ -151,7 +151,10 @@ async function displayWeather(data) {
   otherDetails[2].innerHTML=`<i class="fas fa-wind"></i> ${windSpeed} m/s`;
 
   const weatherBody = document.querySelectorAll("#weather-data > *");
-
+  const existingError = document.getElementById("weather-data").querySelector(".error-display");
+  if (existingError) {
+    existingError.remove();
+  }
   weatherBody.forEach(elmnt => {
     elmnt.style.display="grid";
   });

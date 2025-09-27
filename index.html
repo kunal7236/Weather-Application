@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather info</title>
+    <link rel="icon" href="weather-favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  </head>
+  <body>
+    <!-- Make the weather app containers and form here -->
+    <div id="weather-container">
+      <form id="location-form">
+        <label for="location-input"><i class="fas fa-map-marker-alt"></i> City Name</label>
+        <input type="text" id="location-input" placeholder="Enter city name..." />
+        <button type="submit"><i class="fas fa-search"></i> Get Weather</button>
+      </form>
+      <p><i class="fas fa-cloud-sun"></i> Weather Information</p>
+      <div id="weather-data">
+        <div class="city-info">
+          <div><i class="fas fa-city"></i> City name:</div>
+          <div><i class="fas fa-map"></i> Latitude:</div>
+          <div><i class="fas fa-map"></i> Longitude:</div>
+        </div>
+        <div class="weather-info">
+          <div>main</div>
+          <div>description</div>
+          <img src="" alt="weather icon" />
+        </div>
+        <div class="temp-info">
+          <div><i class="fas fa-thermometer-half"></i> Current</div>
+          <div><i class="fas fa-thermometer-quarter"></i> Feels like</div>
+          <div><i class="fas fa-thermometer-empty"></i> Minimum</div>
+          <div><i class="fas fa-thermometer-full"></i> Maximum</div>
+        </div>
+        <div class="other-info">
+          <div><i class="fas fa-tachometer-alt"></i> Pressure</div>
+          <div><i class="fas fa-tint"></i> Humidity</div>
+          <div><i class="fas fa-wind"></i> Wind Speed</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

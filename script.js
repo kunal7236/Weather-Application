@@ -12,7 +12,7 @@ const apiKey = "dcfaee70512f4fe8b0d69bc89949b67d";
 
 async function getWeather(e) {
   e.preventDefault();
-  const mylocation = document.getElementById("location-input").value;
+  const mylocation = document.getElementById("location-input").value.trim();
   const locationInput = document.getElementById("location-input");
   
   // Clear the input field
